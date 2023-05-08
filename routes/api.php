@@ -16,11 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/trips', [TripController::class, 'index']);
+Route::get('/trips/{id}', [TripController::class, 'show']);
+Route::delete('/trips/{id}', [TripController::class, 'destroy']);
+
+Route::post('/trips', [TripController::class, 'store']);
+Route::put('/trips/{id}', [TripController::class, 'update']);
 
 
 
 
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+ 
