@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TripController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -17,12 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/trips', [TripController::class, 'index']);
 Route::get('/trips/{id}', [TripController::class, 'show']);
-Route::delete('/trips/{id}', [TripController::class, 'destroy']);
-
-Route::post('/trips', [TripController::class, 'store']);
-Route::put('/trips/{id}', [TripController::class, 'update']);
 
 
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
 
 
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::delete('/trips/{id}', [TripController::class, 'destroy']);
+
+    Route::post('/trips', [TripController::class, 'store']); 
+    Route::put('/trips/{id}', [TripController::class, 'update']);
+    Route::post('/logout', [AuthController::class, 'logout']);
+    
+});
  
