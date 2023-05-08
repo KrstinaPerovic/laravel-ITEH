@@ -9,7 +9,7 @@ class Activity extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'date_time'];
+    protected $fillable = ['name', 'description', 'date_time','trip_id'];
 
     public function trip()
     {

@@ -15,6 +15,10 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->dateTime('date_time');
+            $table->foreignId('trip_id');
             $table->timestamps();
         });
     }
